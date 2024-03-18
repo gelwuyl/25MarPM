@@ -24,7 +24,7 @@ def palm_flask():
     return(render_template("palm.html"))
 
 @app.route("/midjourney", methods=["GET","POST"])
-def midjourney_flask():
+def midjourney():
     return(render_template("midjourney.html"))
 
 
@@ -39,8 +39,8 @@ def palm_query():
     return(render_template("palm_reply.html",r=r.last))
 
 
-@app.route("/mj_query", methods=["GET","POST"])
-def mj_query():
+@app.route("/midjourney_query", methods=["GET","POST"])
+def midjourney_query():
     q = request.form.get("q")
     r = replicate.run(
         "stability-ai/stable-diffusion:db21e45d3f7023abc2a46ee38a23973f6dce16bb082a930b0c49861f96d1e5bf",
