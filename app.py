@@ -1,17 +1,16 @@
 from flask import Flask, request, render_template
-
 import google.generativeai as palm
 import replicate
 import os
-
 
 palm.configure(api_key="AIzaSyBgrPrnCD5XvXkFVavjqlVXQU9wnyY1AAA")
 model = {
     "model": "models/chat-bison-001",
 }
 
-os.environ["REPLICATE_API_TOKEN"]="r8_GK2JD0n2YkmAffAeWciRy2ZHTh9f8ww1X5bTE"
+os.environ["REPLICATE_API_TOKEN"] = "r8_GK2JD0n2YkmAffAeWciRy2ZHTh9f8ww1X5bTE"
 
+app = Flask(__name__)
 
 @app.route("/", methods=["GET","POST"])
 def index():
