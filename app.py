@@ -50,4 +50,4 @@ def midjourney_query():
     return(render_template("midjourney_reply.html",r=r[0]))
 
 if __name__ == "__main__":
-    app.run(port=1234)
+    app.run()
