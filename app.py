@@ -72,8 +72,8 @@ def db_query():
     c = conn.execute("select * from user")
     r = ""
     for row in c:
-      print(row)
-    r = "<br>"+r+str(row)
+        print(row)
+        r = r+str(row)+"<br>"
     c.close()
     conn.close()
     r = Markup(r)
