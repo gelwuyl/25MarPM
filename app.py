@@ -19,7 +19,7 @@ def index():
 @app.route("/main", methods=["GET","POST"])
 def main():
     name = request.form.get("name")
-    return(render_template("main.html",r=name"))
+    return(render_template("main.html",r=name))
 
 @app.route("/palm", methods=["GET","POST"])
 def palm_flask():
