@@ -10,6 +10,9 @@ model = {
 
 os.environ["REPLICATE_API_TOKEN"] = "r8_GK2JD0n2YkmAffAeWciRy2ZHTh9f8ww1X5bTE"
 
+change_name_flag = 1
+name = ""
+
 app = Flask(__name__)
 
 @app.route("/", methods=["GET","POST"])
@@ -18,7 +21,10 @@ def index():
 
 @app.route("/main", methods=["GET","POST"])
 def main():
-    name = request.form.get("name")
+    global name, change_name_flag
+    if change_name_flag == 1:
+        name = request.form.get("name")
+        change_name_flag = 0
     return(render_template("main.html",r=name))
 
 @app.route("/palm", methods=["GET","POST"])
