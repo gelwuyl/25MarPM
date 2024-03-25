@@ -30,7 +30,7 @@ def main():
         name = request.form.get("name")
         change_name_flag = 0
         dt = datetime.datetime.now()
-        conn = sqlite3.connect('/log.db')
+        conn = sqlite3.connect('log.db')
         c = conn.cursor()
         c.execute("insert into user (name,timestamp) VALUES(?,?)",(name,dt))
         conn.commit()
@@ -68,7 +68,7 @@ def midjourney_query():
 
 @app.route("/db_query", methods=["GET","POST"])
 def db_query():
-    conn = sqlite3.connect('/log.db')
+    conn = sqlite3.connect('log.db')
     c = conn.execute("select * from user")
     r = ""
     for row in c:
