@@ -73,7 +73,7 @@ def db_query():
     r = ""
     for row in c:
       print(row)
-        r = "<br>"+r+str(row)
+    r = "<br>"+r+str(row)
     c.close()
     conn.close()
     r = Markup(r)
