@@ -10,11 +10,13 @@
 
 
 <div class="container">
-<h2>Welcome to Generative AI, what is your name</h2>
+<h2>hi, {{r}}, how can i help you today?</h2>
 <img src="https://www.hollywoodreporter.com/wp-content/uploads/2024/02/Taylor-Swift-Eras-Tour-Australia-GettyImages-2014750026-H-2024.jpg" 
     width="320" height="240">
-    <form action="/main" method="post">
-        <p><input type="text" name="name"></p>
-        <p><input type="submit" value="Enter"></p>
-    </form>
+<form action="/palm" method="post">
+    <p><input type="submit" value="Text Generator"></p>
+</form>
+<form action="/midjourney" method="post">
+    <p><input type="submit" value="Image Generator"></p>
+</form>
 </div>
