@@ -1,4 +1,6 @@
 from flask import Flask, request, render_template
+from flask import Markup
+
 import google.generativeai as palm
 import replicate
 import os
@@ -71,9 +73,11 @@ def db_query():
     r = ""
     for row in c:
       print(row)
-        r = r + str(row)
+        r = "<br>"+ r + str(row)
     c.close()
     conn.close()
+    r = Markup(r)
+    print(r)
     return(render_template("db_query.html",r=r))
 
 @app.route("/end", methods=["GET","POST"])
