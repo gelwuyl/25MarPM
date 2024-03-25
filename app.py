@@ -16,6 +16,11 @@ app = Flask(__name__)
 def index():
     return(render_template("index.html"))
 
+@app.route("/main", methods=["GET","POST"])
+def main():
+    name = request.form.get("name")
+    return(render_template("main.html,r=name"))
+
 @app.route("/palm", methods=["GET","POST"])
 def palm_flask():
     return(render_template("palm.html"))
