@@ -2,6 +2,8 @@ from flask import Flask, request, render_template
 import google.generativeai as palm
 import replicate
 import os
+import sqlite3
+import datetime
 
 palm.configure(api_key="AIzaSyBgrPrnCD5XvXkFVavjqlVXQU9wnyY1AAA")
 model = {
@@ -25,6 +27,13 @@ def main():
     if change_name_flag == 1:
         name = request.form.get("name")
         change_name_flag = 0
+        dt = datetime.datetime.now()
+        conn = sqlite3.connect('/content/drive/MyDrive/NTU-PACE GPT API/log.db')
+        c = conn.cursor()
+        c.execute("insert into user (name,timestamp) VALUES(?,?)",(name,dt))
+        conn.commit()
+        c.close()
+        conn.close()
     return(render_template("main.html",r=name))
 
 @app.route("/palm", methods=["GET","POST"])
@@ -54,6 +63,18 @@ def midjourney_query():
         input={"prompt": q}
     )
     return(render_template("midjourney_reply.html",r=r[0]))
+
+@app.route("/db_query", methods=["GET","POST"])
+def db_query():
+    conn = sqlite3.connect('/content/drive/MyDrive/NTU-PACE GPT API/log.db')
+    c = conn.execute("select * from user")
+    r = ""
+    for row in c:
+      print(row)
+        r = r + str(row)
+    c.close()
+    conn.close()
+    return(render_template("db_query.html",r=r))
 
 @app.route("/end", methods=["GET","POST"])
 def end():
