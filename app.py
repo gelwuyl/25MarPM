@@ -55,5 +55,9 @@ def midjourney_query():
     )
     return(render_template("midjourney_reply.html",r=r[0]))
 
+@app.route("/end", methods=["GET","POST"])
+def end():
+    return(render_template("end.html",r=name))
+
 if __name__ == "__main__":
     app.run()
